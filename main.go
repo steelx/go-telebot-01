@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"github.com/steelx/go-telebot-01/bothandlers"
 	tb "gopkg.in/tucnak/telebot.v2"
 	"log"
 	"os"
@@ -12,8 +14,6 @@ func main() {
 		publicUrl = os.Getenv("PUBLIC_URL")
 		token     = os.Getenv("TOKEN")
 	)
-
-	//fmt.Printf("port %v url %v token %v", port, publicUrl, token)
 
 	webhook := &tb.Webhook{
 		Listen:   ":" + port,
@@ -30,11 +30,35 @@ func main() {
 		log.Fatal(err)
 	}
 
+	//buttons
+	btnMoon := tb.InlineButton{
+		Unique: "Moon",
+		Text: "Moon 🌹",
+	}
+	btnSun := tb.InlineButton{
+		Unique:          "Sun",
+		Text:            "Sun 🌞",
+	}
+
+	bot.Handle(&btnMoon, func(c *tb.Callback) {
+		_ = bot.Respond(c, &tb.CallbackResponse{
+			ShowAlert: false,
+		})
+
+		_, _ = bot.Send(c.Sender, "Moon says hi!")
+	})
+	bot.Handle(&btnSun, func(c *tb.Callback) {
+		_ = bot.Respond(c, &tb.CallbackResponse{
+			ShowAlert: false,
+		})
+
+		_, _ = bot.Send(c.Sender, "Sun says 'hi!' dad ")
+	})
+
+
 	//handlers
 
-	bot.Handle("/hello", func(m *tb.Message) {
-		_, _ = bot.Send(m.Sender, "Hi !")
-	})
+	bothandlers.MapRoutes(bot)
 
 	bot.Start()
 
