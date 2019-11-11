@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"github.com/steelx/go-telebot-01/bothandlers"
-	tb "gopkg.in/tucnak/telebot.v2"
 	"log"
 	"os"
+
+	"github.com/steelx/go-telebot-01/bothandlers"
+	tb "gopkg.in/tucnak/telebot.v2"
 )
 
 func main() {
@@ -33,11 +33,12 @@ func main() {
 	//buttons
 	btnMoon := tb.InlineButton{
 		Unique: "Moon",
-		Text: "Moon 🌹",
+		Text:   "Moon 🌹",
 	}
+
 	btnSun := tb.InlineButton{
-		Unique:          "Sun",
-		Text:            "Sun 🌞",
+		Unique: "Sun",
+		Text:   "Sun 🌞",
 	}
 
 	bot.Handle(&btnMoon, func(c *tb.Callback) {
@@ -54,7 +55,6 @@ func main() {
 
 		_, _ = bot.Send(c.Sender, "Sun says 'hi!' dad ")
 	})
-
 
 	//handlers
 
