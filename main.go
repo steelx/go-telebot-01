@@ -56,6 +56,14 @@ func main() {
 		_, _ = bot.Send(c.Sender, "Sun says 'hi!' dad ")
 	})
 
+	//define keyboard for buttons
+	inlineKeys := [][]tb.InlineButton{
+		[]tb.InlineButton{btnMoon, btnSun},
+	}
+	bot.Handle("/pick_time", func(m tb.Message) {
+		_, _ = bot.Send(m.Sender, "Day or night ?", &tb.ReplyMarkup{InlineKeyboard: inlineKeys})
+	})
+
 	//handlers
 
 	bothandlers.MapRoutes(bot)
