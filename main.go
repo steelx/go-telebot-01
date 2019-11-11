@@ -13,6 +13,8 @@ func main() {
 		token     = os.Getenv("TOKEN")
 	)
 
+	//fmt.Printf("port %v url %v token %v", port, publicUrl, token)
+
 	webhook := &tb.Webhook{
 		Listen:   ":" + port,
 		Endpoint: &tb.WebhookEndpoint{PublicURL: publicUrl},
@@ -33,5 +35,7 @@ func main() {
 	bot.Handle("/hello", func(m *tb.Message) {
 		_, _ = bot.Send(m.Sender, "Hi !")
 	})
+
+	bot.Start()
 
 }
