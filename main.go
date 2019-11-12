@@ -30,42 +30,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	//buttons
-	btnMoon := tb.InlineButton{
-		Unique: "Moon",
-		Text:   "Moon 🌹",
-	}
-
-	btnSun := tb.InlineButton{
-		Unique: "Sun",
-		Text:   "Sun 🌞",
-	}
-
-	bot.Handle(&btnMoon, func(c *tb.Callback) {
-		_ = bot.Respond(c, &tb.CallbackResponse{
-			ShowAlert: false,
-		})
-
-		_, _ = bot.Send(c.Sender, "Moon says hi!")
-	})
-	bot.Handle(&btnSun, func(c *tb.Callback) {
-		_ = bot.Respond(c, &tb.CallbackResponse{
-			ShowAlert: false,
-		})
-
-		_, _ = bot.Send(c.Sender, "Sun says 'hi!' dad ")
-	})
-
-	//define keyboard for buttons
-	inlineKeys := [][]tb.InlineButton{
-		[]tb.InlineButton{btnMoon, btnSun},
-	}
-	bot.Handle("/pick_time", func(m tb.Message) {
-		_, _ = bot.Send(m.Sender, "Day or night ?", &tb.ReplyMarkup{InlineKeyboard: inlineKeys})
-	})
-
 	//handlers
-
+	bothandlers.InitButtons(bot)
 	bothandlers.MapRoutes(bot)
 
 	bot.Start()
