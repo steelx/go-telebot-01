@@ -6,22 +6,21 @@ import (
 
 //buttons
 var BtnMoon = tb.InlineButton{
-	Unique: "Moon",
+	Unique: "moon",
 	Text:   "Moon 🌹",
 }
 
 var BtnSun = tb.InlineButton{
-	Unique: "Sun",
+	Unique: "sun",
 	Text:   "Sun 🌞",
 }
 
 //define keyboard for buttons
 var BtnInlineKeys = [][]tb.InlineButton{
-	{BtnMoon, BtnSun},
+	[]tb.InlineButton{BtnMoon, BtnSun},
 }
 
 func InitButtons(bot *tb.Bot) {
-	// buttons
 	bot.Handle(&BtnMoon, func(c *tb.Callback) {
 		_ = bot.Respond(c, &tb.CallbackResponse{
 			ShowAlert: false,

@@ -14,7 +14,7 @@ func MapRoutes(bot *tb.Bot) {
 	})
 
 	// pick_time
-	bot.Handle("/picktime", func(m tb.Message) {
+	bot.Handle("/pick_time", func(m *tb.Message) {
 		bot.Send(
 			m.Sender,
 			"Day or night ?",
