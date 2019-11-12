@@ -27,13 +27,13 @@ func InitButtons(bot *tb.Bot) {
 			ShowAlert: false,
 		})
 
-		_, _ = bot.Send(c.Sender, "Moon says hi!")
+		bot.Send(c.Sender, "Moon says hi!")
 	})
 	bot.Handle(&BtnSun, func(c *tb.Callback) {
 		_ = bot.Respond(c, &tb.CallbackResponse{
 			ShowAlert: false,
 		})
 
-		_, _ = bot.Send(c.Sender, "Sun says 'hi!' dad ")
+		bot.Send(c.Sender, "Sun says 'hi!' dad ")
 	})
 }
